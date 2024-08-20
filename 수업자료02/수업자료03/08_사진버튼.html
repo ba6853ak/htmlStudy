@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        
+        img {
+            margin: 5px;
+            width: 100px;
+            height: 100px;
+        }
+
+        input:hover {
+            background: rgb(25, 175, 212);
+        }
+        
+ 
+    </style>
+
+
+
+</head>
+<body>
+    
+    <input type="button" value="이미지 1" onclick="image('image1')">
+    <img id="image1" src="1.jpg" style="display: none;">
+
+    <input type="button" value="이미지 2" onclick="image('image2')">
+    <img id="image2" src="2.jpg" style="display: none;">
+
+    <input type="button" value="이미지 3" onclick="image('image3')">
+    <img id="image3" src="3.jpg" style="display: none;">
+
+    <script>
+
+        function image(imageId){
+            var image = document.getElementById(imageId)
+
+            if(image.style.display == 'none'){
+                image.style.display = 'block';
+            }
+            else{
+                image.style.display = 'none';
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
