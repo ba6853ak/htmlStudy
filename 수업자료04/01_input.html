@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input</title>
+
+
+</head>
+<body>
+    
+    <input type="text" name="" id="user_id">
+
+    <!-- 개발할 때 콘솔 로그 남기지 말 것. -->
+    <script>
+
+        // javaScript의 변수 타입은 var let const 3개가 있다.
+        
+        var v1 = 'banana';
+
+        console.log(v1) // F12 개발자 도구에서 볼 수 있는 용도
+
+        // var은 재선언이 가능해서 데이터 손실을 일으킬 수 있다.
+        var v1 = 'apple';
+        
+        let l1 =  'grape'; // let은 재선언을 방지해 준다.
+
+        // 바뀌면 안되는 정보를 const에 저장한다.
+        const con1 = '상수';
+        // con1 = '111';
+        console.log(con1);
+
+        // null, undefined
+        // null 값이 없다.
+        // undefined 값이 없는 상태
+
+        // let yy;
+        // console.log(yy);
+        // let dd = document.getElementById('user_id1').value;
+        // console.log(dd);
+
+        let str = 'abc';
+        typeof(str); // 데이터 타입을 알려준다.
+        console.log('1','2');
+        console.log(typeof(str),str);
+
+
+        // 데이터 타입 변환
+        //let num = '100'*1;
+        let num = 100+'';
+        console.log(typeof(num), num);
+
+
+        // Number(): 숫자 인식 함수  
+        console.log(typeof(Number('1.2')), Number('1.2'));
+
+        // parseInt(): 숫자 인식 ( 정수 )
+        console.log(typeof(parseInt('1.2')), parseInt('1.2'));
+
+        // parseFloat(): 숫자 인식 ( 소수 점 나오지만 타입은 number로 나온다. )
+        console.log(typeof(parseFloat('1')), parseFloat('1'));
+
+        // String(): 문자로 인식
+        console.log(typeof(String(100)), String(100));
+
+        // 논리 ( true, false )
+        console.log(typeof(Boolean('true')), Boolean('true'));
+
+    </script>
+
+
+</body>
+</html>
