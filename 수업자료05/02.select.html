@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select</title>
+</head>
+<body>
+    
+    <select id="selectCheck">
+
+        <option>사과</option>
+        <option>오렌지</option>
+        <option>딸기</option>
+
+    </select>
+
+    <input type="button" onclick="click1()" value="전송" >
+
+    <script>
+        function click1() {
+
+            alert(document.getElementById('selectCheck').value);
+
+        }
+    </script>
+
+</body>
+</html>
