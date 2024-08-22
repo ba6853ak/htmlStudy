@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" name="" id="num1">
+    <input type="radio" name="op" value="+">+
+    <input type="radio" name="op" value="-">-
+    <input type="radio" name="op" value="*">*
+    <input type="radio" name="op" value="/">/
+    <input type="text" name="" id="num2">
+    <input type="button" value="계산" onclick="op()">
+    <input type="text" name="" id="result">
+    <script>
+        function op() {
+
+            let n1 = document.getElementById('num1').value;
+
+            let n2 = document.getElementById('num2').value;
+            let ops = document.getElementsByName('op');
+            let op;
+            
+            for (let i = 0; i < ops.length; i++) {
+
+                if (ops[i].checked) {
+                    op = ops[i].value;
+                }
+
+            }
+
+            if (op == '+') {
+                document.getElementById('result').value = Number(n1) + Number(n2);
+            }
+            else if (op == '-') {
+                document.getElementById('result').value = Number(n1) - Number(n2);
+            }
+            else if (op == '*') {
+                document.getElementById('result').value = Number(n1) * Number(n2);
+            }
+            else if (op == '/') {
+                document.getElementById('result').value = Number(n1) / Number(n2);
+
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>
