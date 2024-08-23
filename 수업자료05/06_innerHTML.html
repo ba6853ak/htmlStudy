@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .color {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    
+    <input type="button" value="클릭" onclick="create()">
+
+    <div id="result">
+        <!-- 여기에서 JavaScript 함수가 생성한 내용이 표시됩니다. -->
+    </div>
+
+    <script>
+        function create() {
+            let str = '';
+            for(let i = 0; i < 10; i++) {
+                str += '<span class="color"> Hello world ' + i + '</span><br>';
+            }
+            // 생성된 문자열을 id="result"인 div에 넣습니다.
+            document.getElementById('result').innerHTML = str;
+        }
+    </script>
+
+</body>
+</html>

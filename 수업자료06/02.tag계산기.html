@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" name="" id="" placeholder="첫번째 수">
+
+    <select name="">
+
+        <option value="+">+</option>
+
+        <option value="-">-</option>
+
+
+
+    </select>
+
+    <input type="text" name="" id="" placeholder="두번째 수">
+
+    <input type="button" value="계산" onclick="click1()">
+          
+    <span id="sp1">결과값</span>
+
+    
+
+    <script>
+
+        let do_tag = document.getElementsByTagName('input');
+        let select = document.getElementsByTagName('select');
+
+        let sp = document.getElementById('sp1');
+
+  
+
+        function click1() {
+
+            if (select[0].value == '+') {
+                sp.innerText = Number(do_tag[0].value) + Number(do_tag[1].value);
+            }
+            else if (select[0].value == '-') {
+                sp.innerText = Number(do_tag[0].value) - Number(do_tag[1].value);
+            }
+
+
+
+        }
+
+    </script>
+
+</body>
+
+</html>
