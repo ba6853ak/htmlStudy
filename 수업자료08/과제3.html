@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응속도 게임</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .main {
+            width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            border: 3px solid #ccc;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 20px;
+            color: #333;
+        }
+
+        p {
+            margin: 20px 0;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .buttonSet input {
+            width: 120px;
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #button1 {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #button1:hover {
+            background-color: #45a049;
+        }
+
+        .buttonSet input[value="Reset"] {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .buttonSet input[value="Reset"]:hover {
+            background-color: #e53935;
+        }
+
+        .buttonSet input:focus {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="text">
+            <h1>반응속도 게임</h1>
+            <p>클릭 후 시간 표시</p>
+        </div>
+
+        <div class="buttonSet">
+            <input type="button" id="button1" value="Start" onclick="click1()">
+            <input type="button" value="Reset" onclick="click2()">
+        </div>
+    </div>
+
+    <script>
+        let timeout;
+        let state = false; 
+        let startTime;      
+        let greenTime;      
+
+        function click1() {
+            if (document.body.style.backgroundColor === 'red') {
+                alert('초기화 해주세요.');
+                return;
+            }
+
+            if (state) {
+                alert('3초가 지나지 않았습니다.');
+                clearTimeout(timeout); 
+                resetGame(); 
+            } else {
+                startTime = new Date(); 
+                state = true;
+                document.getElementById('button1').value = 'Click';
+                timeout = setTimeout(function () {
+                    document.body.style.backgroundColor = 'green';
+                    greenTime = new Date(); 
+                    state = false;
+                    document.body.addEventListener('click', changeToRed);
+                }, 3000);
+            }
+        }
+
+        function changeToRed() {
+            if (document.body.style.backgroundColor === 'green') {
+                let endTime = new Date();
+                let timeElapsed = endTime - greenTime; 
+                let seconds = Math.floor(timeElapsed / 1000); 
+                let milliseconds = timeElapsed % 1000; 
+                document.body.style.backgroundColor = 'red';
+                document.querySelector('p').textContent = seconds + "." + Math.floor(milliseconds / 10) + "초 경과";
+                clearTimeout(timeout); 
+                document.body.removeEventListener('click', changeToRed); 
+            }
+        }
+
+        function click2() {
+            resetGame(); 
+        }
+
+        function resetGame() {
+            clearTimeout(timeout);
+            state = false; 
+            document.getElementById('button1').value = 'Start';
+            document.querySelector('p').textContent = "클릭 후 시간 표시";
+            document.body.style.backgroundColor = ''; 
+            document.body.removeEventListener('click', changeToRed);
+        }
+    </script>
+</body>
+
+</html>

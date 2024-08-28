@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="add"></div>
+
+
+    <script>
+
+        // 함수 선언식, 함수 표현식
+
+        // 함수 선언식
+        start();
+        function start(){
+            console.log('start');
+        }
+
+        // 함수 표현식, ES6 문법
+        let fn02 = function abc()
+        {
+            console.log('변수');
+        }
+
+        fn02();
+
+        // 함수 표현식, ES6 (2015년 이전 IE 동작 X, 국가 사업에는 사용 지양, 람다식 피할 것)
+        let fn03 = () => {
+
+            console.log('fn03');
+            
+        }
+        fn03();
+
+        start02(1);
+        function start2(num1) {
+            console.log('num1: ', num1);
+        }
+
+        // 매개변수 1개 담겨질 때, 소괄호 생략 가능하다.
+        let fn04 = () => {
+            console.log('fn04');
+        }
+        fn04();
+
+
+
+
+        function start03(num1, num2){
+
+            console.log(num1+num2);
+
+        }
+
+        // 함수 표현식 사용할 때 주의사항.
+        // 힘수 표현식 사용할 때, 무조건 함수가 우선적으로 선언되어야 한다.
+
+        // fn05(1, 2); // error 발생.
+        let fn05 = (num1, num2) => {
+            console.log(num1+num2);
+        }
+        fn05(1, 2);
+
+        // callBack 함수
+        // 함수 - 매개변수 들어가는 곳에 function이 선언되어 있음.
+
+        document.querySelector('.add').addEventListener('click', function() {});
+        document.querySelector('.add').addEventListener('click', fn02);
+        document.querySelector('.add').addEventListener('click', start);
+
+    </script>
+
+</body>
+</html>

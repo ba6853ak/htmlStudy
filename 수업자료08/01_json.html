@@ -6,82 +6,76 @@
     <title>JSON</title>
 </head>
 <body>
-
-
+    
     <input type="button" value="출력" onclick="resultClick()">
-    <span id="result">여기에 출력 (obj2의 address)</span>
-
-
-
+    <span>여기에 출력</span>
 
     <script>
 
-        
+        // json ( key , value )는 Java의 hashmap과 같다.
 
-        // json ( key, value ) java : hashmap
-        // JavaScript Object ( 네트워크에서 데이터를 주고 받을 떄, 기본으로 사용하는 데이터 타입중 1개 )
+        // JavaScript Object ( 네트워크에서 데이터를 주고 받을 때, 기본으로 사용하는 데이터 타입중 1개 )
 
-        // XML ( 태그 형식으로 데이터를 주고 받는다 ) (불편하다.) => 보완한 것이 JSON.
+        // XML은 태그 형식으로 데이터를 주고 받아 불편하다.
+        // XML의 단점을 JSON이 보완했다.
 
-        let obj1 = {}; // 중괄호는 JSON Object
+        // JavaScript Object에 function과 배열을 선언할 수 있다.
 
-        // objcet 사용하는 이유, 데이터 정리.
-        // getterSetter와 비슷한 역할.
-        // 공통된 것들과 묶어 사용한다.
+        let obj1 = {a:'apple', b:'banana'} // 키-값 쌍으로 구성되어 있다.
+                         
+        console.log(obj1.a); // apple 출력
 
-        // obj 사용할 때 주의사항.
-        // 데이터타입이 정의가 안되어 있어서, value에는 그냥 모두 다 들어간다.
+        let obj0 = {}; // 중괄호는 JSON Object
 
-        // div 태그도 들어간다
-        // json 안에 배열도 선언 가능.
-        // json 안에 function 선언 가능.
+        obj1.c = 'grape'; 
 
+        // Object를 사용하는 이유
+        // 데이터 정리, GetterSetter와 비슷한 역할
+        // 공통된 것들과 묶어 사용
 
+        // Object 주의 사항
+        // 데이터 타입 정의가 안 되어 있어, value에 모두 다 들어간다.
 
+        // div 태그 들어감, 배열 선언 가능, function 선언 가능.
 
-        obj1.a = 'apple';
-        obj1.b = 'banana';
-
+        // Object에 function 선언 예시
         obj1.fun = start;
-
-
-        let arr = ['a', 'b', 'c'];
-        obj1.arr = arr;
-
-        obj1.fun();
-
-        console.log(typeof(obj1), obj1);
-
         function start(){
             alert('start');
             console.log('start');
         }
 
+        // Object에 배열 선언 예시
+        let arr = ['a', 'b', 'c'];
+        obj1.arr = arr;
+
+        console.log(typeof(obj1), obj1); // obj 출력.
+        
         // Object 2번째 방법
 
         let obj2 = new Object();
-        // arr[0] // 괄호 안에 숫자가 들어가면 index로 인식 => Array
-        // arr['a'] // 괄호 안에 문자가 들어가면 ket => Object
-        obj2['apple'] = 'apple';
+
+        // arr[0] => 괄호 안에 숫자가 들어가면 index로 인식 => index
+        // arr['a'] => 괄호 안에 문자가 들어가면 key => Object
+
+        obj2['a'] = 'apple';
         obj2['b'] = 'banana';
 
         obj2.address = '서울';
 
-        console.log(obj2);
-        console.log("===============");
         obj1.obj = obj2;
+
         console.log(obj1);
 
         function resultClick(){
 
-            document.getElementById('result').innerText = obj1.obj.address;
+            // document.getElementById('result').innerText = obj1.obj.address; // id로 출력
+            document.querySelector('span').innerHTML = obj1.obj.address; // querySelector로 출력
             console.log(obj1.obj.address);
 
         }
 
-
     </script>
-
 
 </body>
 </html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시계</title>
+</head>
+<body>
+
+    <script>
+        // 시계 ( 날짜 함수 )
+        // 현재 pc기준으로 날짜 정의 ( 클라이언트 기준, 서버에 저장 시 활용 X )
+
+        let today = new Date();
+        // setInterval(function() {
+        //     today = new Date();
+        //     console.log(today.getHours(), '시', today.getMinutes(), '분', today.getSeconds(), '초');
+        // }, 2000); // 1초: 1000(ms)
+        
+        console.log("년도: ", today.getFullYear());
+        console.log("월: ", today.getMonth()+1);
+        console.log("일: ", today.getDate());
+        console.log(today);
+
+        // 1초마다 계속해서 반복 실행
+
+        // setInterval(함수, 몇초마다 반복할 것(int));
+
+
+
+
+        // setTimeOut
+        // setTimeOut(함수, 몇초 뒤에 실행 할 것인지 (int));
+
+        let clock = () => {
+            alert('time');
+            clock();
+        }
+
+
+        clock();
+        function clock(){
+
+            setTimeout(function() {
+                alert('test');
+                clock();
+            }, 2000);
+        }
+
+
+
+    </script>
+
+
+
+</body>
+</html>
