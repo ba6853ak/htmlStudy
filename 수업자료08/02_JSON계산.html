@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" name="" id="num1">
+    <input type="text" name="" id="num2">
+    <input type="button" value="계산" id="result" onclick="resultClick()">
+
+    <script>
+
+        function resultClick() {
+
+            let obj1 = {};
+            let obj2 = {};
+
+            obj1.n1 = Number(document.getElementById('num1').value);
+            obj1.n2 = Number(document.getElementById('num2').value);
+
+            obj2.div = obj1.n1 / obj1.n2;
+            obj2.minus = obj1.n1 - obj1.n2;
+            obj2.mul = obj1.n1 * obj1.n2;
+            obj2.plus = obj1.n1 + obj1.n2;
+
+            console.log(obj2);
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
