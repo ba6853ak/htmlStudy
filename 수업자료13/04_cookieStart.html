@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쿠키</title>
+</head>
+
+<body>
+
+    <input type="button" value="쿠키 체크하기" onclick="getCookie()">
+
+    <input type="button" value="쿠키 저장" onclick="setCookie()">
+
+
+    <script>
+
+
+        // cookie 생성
+        function setCookie() {
+
+            document.cookie = 'cook=value'; // name = vaule, key = value
+
+
+            // 그냥 저장했을 때는 내가 켜고 있는 브라우저가 종료되면 cookie가 모두 삭제된다.
+
+
+        }
+
+
+
+        // cookie 모두 불러오기
+
+        function getCookie() {
+
+            console.log(document.cookie);
+
+
+
+        }
+
+        
+
+
+
+
+    </script>
+    
+
+    <h1>쿠키 만료기간 만들기</h1>
+
+    <input type="button" value="쿠키 체크하기" onclick="getDayCookie()">
+
+    <input type="button" value="쿠키 저장" onclick="setDayCookie()">
+
+    <script>
+
+        // 만료기간을 설정하기 위해서는 cookie에 expire 옵션을 추가해야 한다.
+        // expire 경우, 시계 형식 UTC, GMT 방식
+
+        function setDayCookie() {
+
+            let date = new Date();
+
+            console.log(date.toUTCString());
+
+            // 쿠키에 만료일을 추가
+            // document.cookie = "cook=value; expires=Fri, 31 Dec 2024 23:59:59 GMT";
+        }
+
+    </script>
+
+
+</body>
+
+</html>

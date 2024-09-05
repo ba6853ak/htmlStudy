@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage 시작</title>
+</head>
+<body>
+    
+    <input type="button" value="저장" onclick="save()">
+
+    <input type="button" value="불러오기" onclick="load()">
+
+    <input type="button" value="다음 페이지" onclick="move()">
+
+    <input type="button" value="삭제" onclick="del()">
+
+    <input type="button" value="전체 삭제" onclick="delAll()">
+
+    <script>
+
+
+        // 내가 선택한 key만 삭제
+
+        function del() {
+
+            localStorage.removeItem('key');
+
+        }
+
+
+        // localStorage, server 에 저장하는 방식, 사용자 .pc에 저장하는 방식
+        // 내가 만든 사이트 외 , 다른 곳에서 localStorage 사용했을 경우 덮어 씌어질 가능성이 존재한다.
+
+        // 1. naver에서 key값을 'user'로 'na10'을 저장.
+
+        // 2. google에서 key값을 'user'로 'go20'을 저장.
+
+        // naver.에서 localStorage을 열었을 때, 'na10'을 저장했지만 표시되는 것은 'go20'으로 표시
+
+        // 영구적으로 데이터 보관하는 용은 절대 x
+        // db에서 대용량 데이;터를 10000만건을 불러온다. 한 페이지 이동할때마다 똑같은 데이터를 불러온다.
+        // 똑같은 데이터를  또 다시 부를 필요가 없다.
+ 
+        // 이 방식은 보통 js에서는 잘 사용하지 않습니다., ( 사람들이 몰라서.)
+
+        // react, vue가 도입이 되면서 이 기능이 뜨기 시작.
+
+        // 페이지 불러오는 속도 향상
+        // react의 특징은 처음 불러올떄만 느리고, 그 뒤로는 빠릅니다.
+
+        // 사용자가 브라우저에서 쿠키를 삭제할 떄 삭제된다. 
+
+
+        
+        
+
+
+
+        // localStorage의 ## 모든 key 삭제 ##
+
+        function delAll(){ 
+            localStorage.clear();
+        }
+
+        // 다음 페이지 이동
+        function move() {
+
+            location.href = '02_locationItem.html';
+
+        }
+
+
+
+
+
+        function save() {
+
+            localStorage.setItem('key', 'value');
+
+
+
+        }
+
+
+        // 불러오기
+
+        function load() {
+
+            let test = localStorage.getItem('key');
+
+            console.log(test);
+        }
+
+
+    </script>
+
+
+</body>
+</html>

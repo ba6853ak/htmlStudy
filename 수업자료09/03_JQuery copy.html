@@ -82,55 +82,24 @@
     <input type="text" class="inp01 mar15 inpH" id="result">
     <!-- <span class="mar15 result">결과출력: </span><span class="mar15 result">100</span> -->
 
+
     <script>
 
-        // JavaScript에서 onclick을 html에 선언(default)
-
-        //html에서 event핸들러르 선언하고 싶지 않다.
-
-        // let t = document.querySelector('input[type="button"]').addEventListener('click', function() {});
-        
-        // 그냥  # 쓰고 아이디를 불러오는 것도 좋다
+        // JavaScript에서는 onclick을 기본적으로 html에 선언한다.
 
         $('input[type="button"]').on('click', function() {
-            // js에서 이거 선언 할 때마다 html 코드를 모두 읽어 온다.
-            // let input = document.querySelectorAll('input[type="text"]');
-
-            let input2 = $('input[type="text"]');
-
-            console.log('num1: ', input2[0]);
             
-            console.log('num2: ', input2[1]);
+            let input = $('input[type="text"]');
 
-            let op = $('select'); // 배열 1개짜리로 리턴. + value 추가하는 순간 배열에서 첫번쨰 인덱스 value만 들고 옵니다.
-
-            op.val();
-            op[0].value;
-        
-        if($('#op').val() == '+'){
-            $('#result').val(plus);
-        }
-        else if($('#op').val() == '-'){
-            $('#result').val(minus);
-        }
-        else if($('#op').val() == '*&'){
-            $('#result').val(mul);
-        }
-        else if($('#op').val() == '/'){ 
-            $('#result').val(div);
-        }
-        }
+            console.log(input[0].value);
 
 
-        )
-
-
-        input2[2].value = result;
-
+        })
 
 
 
     </script>
+
 
 </body>
 

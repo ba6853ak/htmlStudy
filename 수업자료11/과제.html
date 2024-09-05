@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="/lib/jquery-3.7.1.min.js"></script>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            font-size: 15px;
+            height: 200px;
+
+        }
+
+        tr,
+        td {
+
+            height: 40px;
+        }
+
+        td {
+            width: 470px;
+        }
+
+        .fieldlarge {
+            width: 200px;
+            height: 25px;
+        }
+
+        .fieldlarge2 {
+            width: 400px;
+            height: 100px;
+        }
+
+        .title {
+            background-color: rgb(177, 233, 235);
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .content {
+            background-color: antiquewhite;
+            text-align: center;
+            width: 100px;
+            font-weight: bold;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .indent {
+            padding-left: 7px;
+            /* 원하는 공백 크기로 조정 */
+        }
+    </style>
+
+
+
+
+</head>
+
+<body class="wrapper">
+
+    <form id="myForm">
+        <table>
+            <tr>
+                <td colspan="2" class="title">회원 기본 정보</td>
+            </tr>
+            <tr>
+                <td class="content">아이디: </td>
+                <td>&nbsp;<input type="text" class="fieldlarge3 indent" style="height: 25px;" name="" id="userId">
+                    4~12자의 영문 대소문자와 숫자로만 입력</td>
+            </tr>
+            <tr>
+                <td class="content">비밀번호: </td>
+                <td>&nbsp;<input type="password" class="fieldlarge3 indent" style="height: 25px;" name="" id="userPw">
+                    4~12자의 영문 대소문자와 숫자로만 입력</td>
+            </tr>
+            <tr>
+                <td class="content">비밀번호확인: </td>
+                <td>&nbsp;<input type="password" class="fieldlarge3 indent" style="height: 25px;" name=""
+                        id="userPwCheck"></td>
+            </tr>
+            <tr>
+                <td class="content">메일주소: </td>
+                <td>&nbsp;<input type="text" class="fieldlarge indent" name="" id="userMail"> 예) id@domain.com </td>
+            </tr>
+            <tr>
+                <td class="content">이름: </td>
+                <td>&nbsp;<input type="text" class="fieldlarge indent" name="" id="userName"></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="title">개인 신상 정보</td>
+            </tr>
+            <tr>
+                <td class="content">주민등록번호: </td>
+                <td>&nbsp;<input type="password" class="fieldlarge indent" name="" id="userPrivateNum"> 예) 1234561234567
+                </td>
+            </tr>
+            <tr>
+                <td class="content">생일: </td>
+                <td>&nbsp;<input type="date" name="birthDay" id="birthDay"></td>
+            </tr>
+            <tr>
+                <td class="content">관심분야:</td>
+                <td>
+                    <input type="checkbox" name="hobbys" id="" value="컴퓨터">컴퓨터
+
+                    <input type="checkbox" name="hobbys" id="" value="인터넷">인터넷
+
+                    <input type="checkbox" name="hobbys" id="" value="여행">여행
+
+                    <input type="checkbox" name="hobbys" id="" value="영화감상">영화감상
+
+                    <input type="checkbox" name="hobbys" id="" value="음악감상">음악감상
+
+                </td>
+            </tr>
+            <tr>
+                <td class="content">자기소개:</td>
+                <td>&nbsp;<textarea class="fieldlarge2 indent"></textarea></td>
+            </tr>
+        </table>
+
+        </br>
+
+        <div class="wrapper">
+            <input type="button" value="회원 가입" onclick="join()">&nbsp;
+            <input type="button" value="다시 입력" onclick="resetForm()">
+        </div>
+
+
+    </form>
+
+    <script>
+
+        function resetForm() {
+            document.getElementById('myForm').reset();
+        }
+
+        function reset(field) {
+            document.getElementById(field).focus();
+            document.getElementById(field).value = '';
+        }
+
+        function join() {
+
+            if (checkUserId(document.getElementById('userId').value) == false) {
+                reset('userId');
+                return;
+
+            }
+
+            else if (checkUserPw(document.getElementById('userPw').value) == false) {
+                reset('userPw');
+                return;
+            }
+
+            else if (checkUserPw2(document.getElementById('userPw').value, document.getElementById('userPwCheck').value) == false) {
+                return;
+            }
+
+
+            else if (checkMail(document.getElementById('userMail').value) == false) {
+                reset('userMail');
+                return;
+            }
+            else if (checkExistData(document.getElementById('userName').value, "이름") == false) {
+                return;
+            }
+            else if (checkuUserPrivateNum(document.getElementById('userPrivateNum').value) == false) {
+                reset('userPrivateNum');
+                return;
+            }
+            else if (checkBirthDay(document.getElementById('birthDay').value) == false) {
+                reset('birthDay');
+                return;
+            }
+            else if (checkBox() == false) {
+                return;
+            }
+
+            if (confirm("회원가입을 진행하시겠습니까?")) {
+                btn1();
+                alert("회원가입이 완료 되었습니다.");
+                location.href = 'login.html'; // 원하는 URL로 변경하세요
+                // resetForm();
+            }
+            else {
+                alert("회원가입에 실패했습니다. \n다시 시도해 주세요.");
+            }
+
+
+
+
+        }
+
+        // 데이터 호출
+        function btn1() {
+            // 폼의 각 항목에서 값을 가져오기
+            let userId = document.getElementById('userId').value;
+            let userPw = document.getElementById('userPw').value;
+            let userMail = document.getElementById('userMail').value;
+            let userName = document.getElementById('userName').value;
+            let userPrivateNum = document.getElementById('userPrivateNum').value;
+            let birthDay = document.getElementById('birthDay').value;
+            let selfIntro = document.querySelector('textarea').value;
+
+            // 서버로 보낼 데이터 객체
+            let obj = {
+                userId: userId,
+                userPw: userPw,
+                userMail: userMail,
+                userName: userName,
+                userPrivateNum: userPrivateNum,
+                birthDay: birthDay,
+                selfIntro: selfIntro
+            };
+
+            // 비동기 (화면을 움직이지 않는다.)
+            $.ajax({
+                url: 'http://localhost:3000/register',
+                type: 'post',
+                data: JSON.stringify(obj),
+                contentType: 'application/json',
+                success: function (res) {
+                    console.log(res);
+                    if (res.status == 200) {
+                        alert('회원가입 성공!');
+                    } else {
+                        alert('회원가입 실패: ' + res.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('회원가입 요청 중 오류 발생:', error);
+                    alert('서버 오류가 발생했습니다.');
+                }
+            });
+        }
+
+
+        function checkExistData(value, dataName) {
+
+            if (value == "") {
+                alert(dataName + " 입력하세요.");
+                return false;
+            }
+
+            return true;
+
+        }
+
+
+
+
+        function checkUserId(id) {
+
+            if (!checkExistData(id, "아이디"))
+                return false;
+
+            var idRegExp = /^[a-zA-z0-9]{4,12}$/;  // 아이디 유효성 검사
+
+            if (!idRegExp.test(id)) {
+                alert("아이디는 4~12자의 영문 대소문자와 숫자로만 입력.")
+                return false;
+            }
+            return true;
+
+        }
+
+        function checkUserPw(pw) {
+
+            if (!checkExistData(pw, "비밀번호"))
+                return false;
+
+            var pwRegExp = /^[a-zA-z0-9]{4,12}$/;  // 비밀번호 유효성 검사
+
+            if (!pwRegExp.test(pw)) {
+                alert("비밀번호는 4~12자의 영문 대소문자와 숫자로만 입력.")
+                return false;
+            }
+            return true;
+
+        }
+
+        function checkUserPw2(pw, pw2) {
+
+            if (!checkExistData(pw2, "재확인 비밀번호"))
+                return false;
+
+            if (pw != pw2) {
+                alert("비밀번호가 일치하지 않습니다.")
+                return false;
+            }
+            return true;
+
+        }
+
+
+        function checkMail(mail) {
+
+            if (!checkExistData(mail, "이메일"))
+                return false;
+
+            var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+            if (!emailRegExp.test(mail)) {
+                alert("이메일 형식이 올바르지 않습니다.")
+                return false;
+            }
+            return true;
+        }
+
+
+        function checkuUserPrivateNum(num) {
+
+            if (!checkExistData(num, "주민등록번호"))
+                return false;
+
+            var numberRegExp = /^\d{13}$/;
+            if (!numberRegExp.test(num)) {
+                alert("주민등록번호 13자리를 입력하세요.")
+                return false;
+            }
+            return true;
+        }
+
+
+        function checkBirthDay(birth) {
+
+            if (!checkExistData(birth, "생일")) {
+                return false;
+
+            }
+
+            // 오늘 날짜
+            var today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            var birthDate = new Date(birth);
+
+            if (birthDate > today) {
+                alert("생일은 오늘 날짜 이전이어야 합니다.")
+                return false;
+            }
+            return true;
+        }
+
+
+        function checkBox() {
+
+            var checkboxes = document.querySelectorAll('input[name="hobbys"]:checked');
+            var count = checkboxes.length; // 선택된 체크박스의 개수
+
+            if (!(count > 0)) {
+                alert("최소 1개 이상 선택하세요.");
+                return false;
+            }
+
+            return true;
+
+        }
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

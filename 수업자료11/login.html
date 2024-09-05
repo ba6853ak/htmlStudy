@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 페이지</title>
+    <script src="/lib/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .login-container {
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+        <h2>로그인</h2>
+        <form>
+            <input type="text" placeholder="아이디" id="userId" required>
+            <input type="password" placeholder="비밀번호" id="userPw" required>
+            <input type="button" value="로그인" onclick="login()">
+        </form>
+    </div>
+
+    <script>
+function login() {
+    let userId = document.getElementById('userId').value;
+    let userPw = document.getElementById('userPw').value;
+
+    let obj = {
+        userId: userId,
+        userPw: userPw,
+    };
+
+    console.log('로그인 요청 데이터:', obj);
+
+    $.ajax({
+        url: 'http://localhost:3000/login',
+        type: 'POST',  // GET에서 POST로 변경
+        data: JSON.stringify(obj),  // 객체를 JSON 문자열로 변환하여 전송
+        contentType: 'application/json',  // JSON 형식으로 서버에 전송
+        dataType: 'json',
+        success: function (res) {
+            console.log('서버 응답:', res);
+            if (res.status == 200) {
+                console.log('로그인 성공');
+                alert('로그인 성공!');
+            } else {
+                console.log('로그인 실패');
+                alert('로그인 실패: ' + res.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error('로그인 요청 중 오류 발생:', error);
+            alert('서버 오류가 발생했습니다.');
+        }
+    });
+}
+    </script>
+</body>
+
+</html>

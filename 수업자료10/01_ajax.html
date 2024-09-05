@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+
+    <script src="/lib/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+    
+    <input type="button" value="전송" onclick="send()">
+
+    <script>
+
+        /* 버튼 클릭 */
+        function send(){
+
+            // 다른 pc (  서버  ) 에게 데이터를 요청하는 함수
+            // ajax는 사용할 떄, JQuery 라이브러리를 이용해서 사용한다.
+
+            // JQuery 언어를 사용할 떄는, ajax 사용을 지향. ( 호환성 문제 ) //
+
+            // url을 get 방식으로 가져와 만약 성공하면 res를 통해 출력한다.
+
+            $.ajax({
+                url: 'https://jsonplaceholder.typicode.com/posts', // 요청 대상 ( 웹이기 떄문에 url로 요청한다. )
+                type: 'get', // 전송 방식 ( get, post 방식으로 구분한다. )
+                dataType: 'json', // 요청대상으로부터 결과물을 받을 때, 언어에게 어떤 방식으로 주는 것인지 hint.
+                // url이 데이터를 줄 떄 이게 어떤 형식으로 주는 것인지 강제로 형태를 변형하여 ajax에게 준다. 디폴트는 text ( String )형태이다.
+
+                success: function(res) { 
+                    console.log(res);
+                }
+            })
+
+        }
+
+    </script>
+
+
+</body>
+</html>
